@@ -25,9 +25,7 @@ import org.videolan.vlc.PlaybackService
 import org.videolan.vlc.R
 
 class VideoPlayerBeautyDelegate(
-    private val player: VideoPlayerActivity,
-    private val videoLayout: VLCVideoLayout,
-    private val playbackService: PlaybackService
+    private val player: VideoPlayerActivity
 ) {
 
     private val mPixelFree by lazy {
@@ -38,31 +36,6 @@ class VideoPlayerBeautyDelegate(
 
     fun beauty() {
 
-        videoLayout?.findViewById<FrameLayout>(R.id.player_surface_frame)?.let {
-            val surfaceView = it.findViewById<SurfaceView>(R.id.surface_video)
-
-            surfaceView?.let { surface ->
-                var w = 0
-                var h = 0
-                playbackService?.currentVideoTrack?.let {
-                    w = it.getWidth()
-                    h = it.getHeight()
-                }
-                if (w == 0) w = surface.width
-                if (h == 0) h = surface.height
-
-                val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-
-
-                var rgbaData = convertBitmapToRGBA(bitmap);
-                var rowBytes = bitmap.rowBytes;
-
-                mOpenGLRender.onFrame(1,w,h,ImgFmt.IMAGE_FORMAT_RGBA,rowBytes,rgbaData)
-
-                val bitmap2 = BitmapFactory.decodeByteArray(rgbaData, 0, rgbaData.size)
-                bitmap2
-            }
-        }
     }
 
 
