@@ -299,6 +299,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
     private val playerKeyListenerDelegate: PlayerKeyListenerDelegate by lazy(LazyThreadSafetyMode.NONE) { PlayerKeyListenerDelegate(this@VideoPlayerActivity) }
     val tipsDelegate: VideoTipsDelegate by lazy(LazyThreadSafetyMode.NONE) { VideoTipsDelegate(this@VideoPlayerActivity) }
     var isTv: Boolean = false
+    val videoPlayerBeautyDelegate: VideoPlayerBeautyDelegate by lazy(LazyThreadSafetyMode.NONE) { VideoPlayerBeautyDelegate(this@VideoPlayerActivity) }
 
     private val dialogsDelegate = DialogDelegate()
     private var baseContextWrappingDelegate: AppCompatDelegate? = null
@@ -1444,6 +1445,9 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
         touchDelegate.seekDelta(delta)
     }
 
+    fun beauty() {
+        videoPlayerBeautyDelegate.beauty();
+    }
 
     override fun togglePlayPause() {
         doPlayPause()

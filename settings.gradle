@@ -3,3 +3,7 @@ include ':application:tools', ':application:resources', ':application:mediadb', 
 include ':application:vlc-android'
 include ':application:moviepedia'
 include ':application:remote-access-client'
+
+include ':lib_pixelFree_uikit'
+include ':sdk-aar'
+include ':hapiAVRender'
